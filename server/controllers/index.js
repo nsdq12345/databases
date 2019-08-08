@@ -3,13 +3,15 @@ var mysql = require('../db/index.js');
 
 module.exports = {
   messages: {
-    get: function (req, res, next) {
+    get: function (req, res) {
 
       models.messages.get((err, result) => {
         if (err) {
           throw err;
         }
-        res.end('done');
+        console.log("RESULTS:", result);
+
+        res.end(JSON.stringify(result));
       });
     }, // a function which handles a get request for all messages
     post: function (req, res) {

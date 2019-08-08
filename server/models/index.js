@@ -4,7 +4,8 @@ var request = require('request');
 module.exports = {
   messages: {
     get: function (callback) {
-
+      var query = 'SELECT userName, messages, roomName FROM messages;';
+      db.query(query, callback);
     }, // a function which produces all the messages
     post: function (req, callback) {
       var userName = req.body.username;
@@ -20,6 +21,7 @@ module.exports = {
     // Ditto as above.
     get: function () {},
     post: function (req, callback) {
+
       var userName = req.body.username;
       var query = `INSERT INTO users (userName) VALUES('${userName}');`;
       db.query(query, callback);
