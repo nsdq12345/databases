@@ -20,6 +20,7 @@ describe('Persistent Node Chat Server', function() {
     dbConnection.query('truncate ' + 'messages');
     dbConnection.query('truncate ' + 'users');
     dbConnection.query('truncate ' + 'rooms', done);
+    // dbConnection.query('SELECT * FROM users;', done);
   });
 
   afterEach(function() {
@@ -47,7 +48,6 @@ describe('Persistent Node Chat Server', function() {
       }, function () {
         // Now if we look in the database, we should find the
         // posted message there.
-
         // TODO: You might have to change this test to get all the data from
         // your message table, since this is schema-dependent.
         var queryString = 'SELECT * FROM messages';
@@ -58,7 +58,7 @@ describe('Persistent Node Chat Server', function() {
           expect(results.length).to.equal(1);
 
           // TODO: If you don't have a column named text, change this test.
-          expect(results[0].text).to.equal('In mercy\'s name, three days is all I need.');
+          expect(results[0].messages).to.equal('In mercy\'s name, three days is all I need.');
 
           done();
         });
@@ -68,7 +68,7 @@ describe('Persistent Node Chat Server', function() {
 
   it('Should output all messages from the DB', function(done) {
     // Let's insert a message into the db
-       var queryString = "";
+       var queryString = "INSERT INTO messages (userName, roomName, messages) VALUES ('sasygurl2006','main','Men like you can never change!')";
        var queryArgs = [];
     // TODO - The exact query string and query args to use
     // here depend on the schema you design, so I'll leave
