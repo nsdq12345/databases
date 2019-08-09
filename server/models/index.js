@@ -8,8 +8,9 @@ module.exports = {
       db.query(query, callback);
     }, // a function which produces all the messages
     post: function (req, callback) {
+      console.log(req);
       var userName = req.body.username;
-      var message = req.body.message;
+      var message = req.body.message || req.body.text;
       message = message.toString().replace("'", "\\'");
       var roomName = req.body.roomname;
       var query = `INSERT INTO messages (userName, messages, roomName) VALUES('${userName}', '${message}', '${roomName}');`;

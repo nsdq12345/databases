@@ -11,7 +11,17 @@ module.exports = {
         }
         console.log("RESULTS:", result);
 
-        res.end(JSON.stringify(result));
+        var newArray = [];
+        for (var i = 0; i < result.length; i++) {
+
+          var newObj = {username: result[i].userName, text: result[i].messages, roomname: result[i].roomName};
+          newArray.push(newObj);
+
+        }
+
+
+        res.writeHead(200);
+        res.end(JSON.stringify(newArray));
       });
     }, // a function which handles a get request for all messages
     post: function (req, res) {

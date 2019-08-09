@@ -10,6 +10,10 @@ router.get('/users', controller.users.get);
 
 router.post('/users', controller.users.post);
 
+router.options('/users', controller.users.get);
+
+router.options('/users', controller.users.post);
+
 
 module.exports = router;
 
